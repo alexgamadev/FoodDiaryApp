@@ -19,18 +19,18 @@ import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = {
+type FooterProps = {
   title: string,
   children: any
 }
 
-const Section = ({ children, title }: SectionProps) => {
+const Footer = ({ children, title }: FooterProps) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.sectionContainer}>
+    <View style={styles.footerContainer}>
       <Text
         style={[
-          styles.sectionTitle,
+          styles.footerTitle,
           {
             color: isDarkMode ? Colors.white : Colors.black,
           },
@@ -39,7 +39,7 @@ const Section = ({ children, title }: SectionProps) => {
       </Text>
       <Text
         style={[
-          styles.sectionDescription,
+          styles.footerDescription,
           {
             color: isDarkMode ? Colors.light : Colors.dark,
           },
@@ -69,24 +69,24 @@ const App = () => {
         style={{
           backgroundColor: isDarkMode ? Colors.black : Colors.white,
         }}>
-        <Section title={"Test"}>
+        <Footer title={"Test"}>
           Test text
-        </Section>
+        </Footer>
       </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
+  footerContainer: {
     marginTop: 4,
     paddingHorizontal: 24
   },
-  sectionTitle: {
+  footerTitle: {
     fontSize: 24,
     fontWeight: '600',
   },
-  sectionDescription: {
+  footerDescription: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
