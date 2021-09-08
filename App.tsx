@@ -7,7 +7,6 @@
 import React from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -18,6 +17,8 @@ import {
 import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
+
+import Home from "pages/Home";
 
 type FooterProps = {
   title: string,
@@ -61,10 +62,7 @@ const App = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-      </ScrollView>
+      <Home />
       <View
         style={{
           backgroundColor: isDarkMode ? Colors.black : Colors.white,
