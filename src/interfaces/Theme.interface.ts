@@ -7,7 +7,7 @@ export interface ColourTheme {
     background: string;
 }
 
-export interface SpaceTheme {
+export interface SpacingTheme {
     base: number;
     double: number;
 }
@@ -15,5 +15,5 @@ export interface SpaceTheme {
 export interface Theme {
     id: string;
     colour: ColourTheme;
-    space: SpaceTheme;
+    spacing: SpacingTheme;
 }
