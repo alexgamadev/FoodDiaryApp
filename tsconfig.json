@@ -64,6 +64,9 @@
       "interfaces/*": [
         "src/interfaces/*"
       ],
+      "contexts/*": [
+        "src/contexts/*"
+      ],
     }
   },
   "exclude": [
