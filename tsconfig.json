@@ -60,7 +60,13 @@
       ],
       "components/*": [
         "src/components/*"
-      ]
+      ],
+      "interfaces/*": [
+        "src/interfaces/*"
+      ],
+      "contexts/*": [
+        "src/contexts/*"
+      ],
     }
   },
   "exclude": [

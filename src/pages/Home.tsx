@@ -4,35 +4,38 @@
  * @format
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
-  SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
-  useColorScheme,
+  Text
 } from 'react-native';
 
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
+import { Theme } from 'interfaces/Theme.interface';
+import { useTheme } from 'contexts/Theme.context';
+
+const createStyles = (theme: Theme) => {
+  return StyleSheet.create({
+    mainBackground: {
+      backgroundColor: theme.colour.background
+    }
+  });
+}
 
 const Home = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const { theme } = useTheme();
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    flex: 1
-  };
+  const styles = useMemo(
+    () => createStyles(theme),
+    [theme]
+  );
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Text>Test</Text>
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={styles.mainBackground}>
+      <Text>Test</Text>
+    </ScrollView>
   );
 };
 
