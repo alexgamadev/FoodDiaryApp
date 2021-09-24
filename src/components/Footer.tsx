@@ -20,10 +20,7 @@ const createStyles = (theme: Theme) => {
             fontSize: 18,
             fontWeight: '400',
             color: theme.colour.onPrimary
-        },
-        highlight: {
-            fontWeight: '700',
-        },
+        }
     });
 }
 

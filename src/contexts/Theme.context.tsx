@@ -21,6 +21,7 @@ interface Props {
     children?: React.ReactNode;
 }
 
+// Creates a memoized component that stores the theme and returns a provider for it
 export const ThemeProvider = React.memo<Props>((props) => {
     const [theme, setTheme] = useState<Theme>(props.initialTheme);
 
