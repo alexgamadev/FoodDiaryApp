@@ -12,9 +12,9 @@ import {
   View,
 } from 'react-native';
 
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
+import { DEFAULT_LIGHT_THEME } from 'interfaces/DefaultLight.theme';
+import { DEFAULT_DARK_THEME } from 'interfaces/DefaultDark.theme';
+import { ThemeProvider } from 'contexts/Theme.context';
 
 import Home from "pages/Home";
 import Footer from "components/Footer";
@@ -22,24 +22,16 @@ import Footer from "components/Footer";
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    flex: 1
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Home />
-      <View
-        style={{
-          backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        }}>
+    <ThemeProvider initialTheme={isDarkMode ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <Home />
         <Footer>
           Test text
         </Footer>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ThemeProvider>
   );
 };
 
