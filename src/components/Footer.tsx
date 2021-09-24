@@ -1,50 +1,54 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
     StyleSheet,
     Text,
-    useColorScheme,
     View,
 } from 'react-native';
 
-import {
-    Colors
-} from 'react-native/Libraries/NewAppScreen';
+import { Theme } from 'interfaces/Theme.interface';
+import { useTheme } from 'contexts/Theme.context';
+
+const createStyles = (theme: Theme) => {
+    return StyleSheet.create({
+        footerContainer: {
+            paddingTop: 4,
+            paddingHorizontal: 24,
+            backgroundColor: theme.colour.footer
+        },
+        footerDescription: {
+            marginTop: 8,
+            fontSize: 18,
+            fontWeight: '400',
+            color: theme.colour.onPrimary
+        },
+        highlight: {
+            fontWeight: '700',
+        },
+    });
+}
 
 type FooterProps = {
     children: any
 }
 
 const Footer = ({ children }: FooterProps) => {
-    const isDarkMode = useColorScheme() === 'dark';
+    const { theme } = useTheme();
+
+    const styles = useMemo(
+        () => createStyles(theme),
+        [theme]
+    );
 
     return (
-        <View style={[styles.footerContainer, { backgroundColor: isDarkMode ? Colors.black : Colors.white }]}>
+        <View style={styles.footerContainer}>
             <Text
-                style={[
-                    styles.footerDescription,
-                    {
-                        color: isDarkMode ? Colors.light : Colors.dark,
-                    },
-                ]}>
+                style={styles.footerDescription}>
                 {children}
             </Text>
         </View>
     );
 };
 
-const styles = StyleSheet.create({
-    footerContainer: {
-        marginTop: 4,
-        paddingHorizontal: 24
-    },
-    footerDescription: {
-        marginTop: 8,
-        fontSize: 18,
-        fontWeight: '400',
-    },
-    highlight: {
-        fontWeight: '700',
-    },
-});
+
 
 export default Footer;
