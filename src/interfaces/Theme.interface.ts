@@ -5,6 +5,7 @@ export interface ColourTheme {
     surface: string;
     onSurface: string;
     background: string;
+    footer: string;
 }
 
 export interface SpacingTheme {
