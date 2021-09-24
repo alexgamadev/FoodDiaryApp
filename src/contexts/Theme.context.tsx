@@ -55,3 +55,6 @@ export const ThemeProvider = React.memo<Props>((props) => {
         </Context.Provider>
     );
 });
+
+// Custom hook to use 
+export const useTheme = () => React.useContext(Context);
