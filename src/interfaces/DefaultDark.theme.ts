@@ -7,6 +7,7 @@ const DEFAULT_DARK_COLOUR_THEME: ColourTheme = {
     onSurface: '#fff',
     background: '#3f3f3f',
     footer: '#121212',
+    white: '#fff',
 };
 
 const DEFAULT_DARK_SPACING_THEME: SpacingTheme = {

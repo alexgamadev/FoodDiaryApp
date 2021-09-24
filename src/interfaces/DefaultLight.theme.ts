@@ -6,7 +6,8 @@ const DEFAULT_LIGHT_COLOUR_THEME: ColourTheme = {
     surface: '#fff',
     onSurface: '#000',
     background: '#dedede',
-    footer: '#ccc'
+    footer: '#ccc',
+    white: '#fff',
 }
 
 const DEFAULT_LIGHT_SPACING_THEME: SpacingTheme = {
