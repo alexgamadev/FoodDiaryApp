@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import {
     StyleSheet,
     Text,
+    TouchableOpacity,
     View,
 } from 'react-native';
 
@@ -11,6 +12,9 @@ import { useTheme } from 'contexts/Theme.context';
 const createStyles = (theme: Theme) => {
     return StyleSheet.create({
         footerContainer: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             paddingTop: 4,
             paddingHorizontal: 24,
             backgroundColor: theme.colour.footer
@@ -20,6 +24,19 @@ const createStyles = (theme: Theme) => {
             fontSize: 18,
             fontWeight: '400',
             color: theme.colour.onPrimary
+        },
+        newEntryButton: {
+            backgroundColor: theme.colour.primary,
+            borderRadius: 100,
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 40,
+            height: 40,
+            margin: 10
+        },
+        newEntryButtonText: {
+            color: theme.colour.white,
+            fontSize: 20
         }
     });
 }
@@ -38,10 +55,9 @@ const Footer = ({ children }: FooterProps) => {
 
     return (
         <View style={styles.footerContainer}>
-            <Text
-                style={styles.footerDescription}>
-                {children}
-            </Text>
+            <TouchableOpacity style={styles.newEntryButton}>
+                <Text style={styles.newEntryButtonText}>+</Text>
+            </TouchableOpacity>
         </View>
     );
 };
