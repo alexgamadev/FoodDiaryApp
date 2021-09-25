@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import {
+    GestureResponderEvent,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -53,9 +54,15 @@ const Footer = ({ children }: FooterProps) => {
         [theme]
     );
 
+    const onNewEntry = (event: GestureResponderEvent) => {
+        console.log(event.timeStamp);
+    }
+
     return (
         <View style={styles.footerContainer}>
-            <TouchableOpacity style={styles.newEntryButton}>
+            <TouchableOpacity
+                style={styles.newEntryButton}
+                onPress={(event) => onNewEntry(event)}>
                 <Text style={styles.newEntryButtonText}>+</Text>
             </TouchableOpacity>
         </View>
