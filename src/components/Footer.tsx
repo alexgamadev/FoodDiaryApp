@@ -1,3 +1,6 @@
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+
 import React, { useMemo } from 'react';
 import {
     GestureResponderEvent,
@@ -6,10 +9,12 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
+import Realm from 'realm';
 import { DateTime } from "luxon";
 
 import { Theme } from 'interfaces/Theme.interface';
 import { useTheme } from 'contexts/Theme.context';
+import { DiaryEntry } from 'interfaces/DiaryEntry.interface';
 
 const createStyles = (theme: Theme) => {
     return StyleSheet.create({
@@ -44,10 +49,11 @@ const createStyles = (theme: Theme) => {
 }
 
 type FooterProps = {
+    realm: Realm | null;
     children: any
 }
 
-const Footer = ({ children }: FooterProps) => {
+const Footer = ({ realm, children }: FooterProps) => {
     const { theme } = useTheme();
 
     const styles = useMemo(
@@ -56,7 +62,29 @@ const Footer = ({ children }: FooterProps) => {
     );
 
     const onNewEntry = (event: GestureResponderEvent) => {
-        console.log(DateTime.now().setLocale('en-GB').toLocaleString(DateTime.DATE_SHORT));
+        if (realm) {
+            const dateTime = DateTime.now().setLocale('en-GB');
+            const newEntryData: DiaryEntry = {
+                id: uuidv4(),
+                mealName: `Test meal ${dateTime}`,
+                description: "Test descriptions",
+                createdAt: dateTime,
+                imageURI: null,
+            }
+
+            realm.write(() => {
+                realm.create("DiaryEntry", {
+                    _id: newEntryData.id,
+                    mealName: newEntryData.mealName,
+                    description: newEntryData.description,
+                    createdAt: newEntryData.createdAt.toISO(),
+                    imageURI: newEntryData.imageURI
+                });
+            });
+
+            console.log(dateTime.toLocaleString(DateTime.DATE_MED));
+            console.log(realm.objects("DiaryEntry"));
+        }
     }
 
     return (
