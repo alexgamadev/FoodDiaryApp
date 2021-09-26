@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
+import { DateTime } from "luxon";
 
 import { Theme } from 'interfaces/Theme.interface';
 import { useTheme } from 'contexts/Theme.context';
@@ -55,7 +56,7 @@ const Footer = ({ children }: FooterProps) => {
     );
 
     const onNewEntry = (event: GestureResponderEvent) => {
-        console.log(event.timeStamp);
+        console.log(DateTime.now().setLocale('en-GB').toLocaleString(DateTime.DATE_SHORT));
     }
 
     return (
