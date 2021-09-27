@@ -14,6 +14,8 @@ import { DateTime } from "luxon";
 import { Theme } from 'interfaces/Theme.interface';
 import { useTheme } from 'contexts/Theme.context';
 import { DiaryEntry } from 'interfaces/DiaryEntry';
+import Button from './Button';
+import { CameraOptions, ImageLibraryOptions, launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
 const createStyles = (theme: Theme) => {
     return StyleSheet.create({
@@ -24,19 +26,6 @@ const createStyles = (theme: Theme) => {
             paddingTop: 4,
             paddingHorizontal: 24,
             backgroundColor: theme.colour.primary
-        },
-        newEntryButton: {
-            backgroundColor: theme.colour.surface,
-            borderRadius: 100,
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: 50,
-            height: 50,
-            marginBottom: 5
-        },
-        newEntryButtonText: {
-            color: theme.colour.primary,
-            fontSize: 20
         }
     });
 }
@@ -56,29 +45,35 @@ const Footer = ({ realm, children }: FooterProps) => {
 
     const onNewEntry = (event: GestureResponderEvent) => {
         if (realm) {
-            const dateTime = DateTime.now().setLocale('en-GB');
-            const newEntryData = new DiaryEntry(
-                `Test meal ${dateTime}`,
-                "Test descriptions",
-                dateTime,
-                null,
-            );
+            const imageOptions: CameraOptions = {
+                saveToPhotos: true,
+                mediaType: 'photo',
+            }
 
-            realm.write(() => {
-                realm.create<DiaryEntry>("DiaryEntry", newEntryData);
+            launchCamera(imageOptions, ({ assets }) => {
+                if (!assets?.[0].uri) return;
+
+                const dateTime = DateTime.now().setLocale('en-GB');
+                const imageUri = assets[0].uri;
+                const newEntryData = new DiaryEntry(
+                    `Test meal ${dateTime}`,
+                    "Test descriptions",
+                    dateTime,
+                    imageUri,
+                );
+
+                console.log(newEntryData);
+
+                realm.write(() => {
+                    realm.create<DiaryEntry>("DiaryEntry", newEntryData);
+                });
             });
-
-            console.log(dateTime.toLocaleString(DateTime.DATE_MED));
         }
     }
 
     return (
         <View style={styles.footerContainer}>
-            <TouchableOpacity
-                style={styles.newEntryButton}
-                onPress={(event) => onNewEntry(event)}>
-                <Text style={styles.newEntryButtonText}>+</Text>
-            </TouchableOpacity>
+            <Button onPressCallback={onNewEntry}>+</Button>
         </View>
     );
 };
