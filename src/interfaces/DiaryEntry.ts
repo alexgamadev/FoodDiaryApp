@@ -9,9 +9,9 @@ export class DiaryEntry {
     public mealName: string;
     public description: string | null;
     public createdAt: string;
-    public imageURI: string | null;
+    public imageURI: string;
 
-    constructor(mealName: string, description: string | null, createdAt: DateTime, imageURI: string | null) {
+    constructor(mealName: string, description: string | null, createdAt: DateTime, imageURI: string) {
         this.id = uuidv4();
         this.mealName = mealName;
         this.description = description;
@@ -27,7 +27,7 @@ export class DiaryEntry {
             mealName: "string",
             description: "string?",
             createdAt: "string",
-            imageURI: "string?"
+            imageURI: "string"
         }
     }
 }
