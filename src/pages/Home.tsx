@@ -14,6 +14,7 @@ import {
 import { Theme } from 'interfaces/Theme.interface';
 import { useTheme } from 'contexts/Theme.context';
 import { DiaryEntry } from 'interfaces/DiaryEntry';
+import DiaryEntryCard from 'components/DiaryEntryCard';
 
 const createStyles = (theme: Theme) => {
   return StyleSheet.create({
@@ -57,10 +58,9 @@ const Home = ({ realm }: HomeProps) => {
       style={styles.mainBackground}>
       {entries &&
         entries.map(entry => {
-          return <Text key={entry.id}>{entry.mealName}</Text>
+          return (<DiaryEntryCard key={entry.id} entry={entry} />)
         })
       }
-
     </ScrollView>
   );
 };

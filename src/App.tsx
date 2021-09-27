@@ -41,7 +41,7 @@ const App = () => {
 
 
   return (
-    <ThemeProvider initialTheme={isDarkMode ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME}>
+    <ThemeProvider initialTheme={DEFAULT_LIGHT_THEME}>
       <SafeAreaView style={{ flex: 1 }}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <Home realm={realm} />
