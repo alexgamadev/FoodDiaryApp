@@ -41,7 +41,7 @@ const createStyles = (theme: Theme) => {
             margin: 10
         },
         newEntryButtonText: {
-            color: theme.colour.white,
+            color: theme.colour.onPrimary,
             fontSize: 20
         }
     });
