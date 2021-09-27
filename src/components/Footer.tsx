@@ -23,25 +23,19 @@ const createStyles = (theme: Theme) => {
             alignItems: 'center',
             paddingTop: 4,
             paddingHorizontal: 24,
-            backgroundColor: theme.colour.footer
-        },
-        footerDescription: {
-            marginTop: 8,
-            fontSize: 18,
-            fontWeight: '400',
-            color: theme.colour.onPrimary
+            backgroundColor: theme.colour.primary
         },
         newEntryButton: {
-            backgroundColor: theme.colour.primary,
+            backgroundColor: theme.colour.surface,
             borderRadius: 100,
             justifyContent: 'center',
             alignItems: 'center',
-            width: 40,
-            height: 40,
-            margin: 10
+            width: 50,
+            height: 50,
+            marginBottom: 5
         },
         newEntryButtonText: {
-            color: theme.colour.onPrimary,
+            color: theme.colour.primary,
             fontSize: 20
         }
     });
