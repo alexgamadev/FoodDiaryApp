@@ -19,7 +19,7 @@ import { ThemeProvider } from 'contexts/Theme.context';
 
 import Home from "pages/Home";
 import Footer from "components/Footer";
-import { DiaryEntrySchema } from 'interfaces/DiaryEntry.interface';
+import { DiaryEntry } from 'interfaces/DiaryEntry';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -27,12 +27,13 @@ const App = () => {
 
   useEffect(() => {
     async function openRealm() {
-      const newRealm = await Realm.open({
+      await Realm.open({
         "path": "food-diary-app",
-        "schema": [DiaryEntrySchema]
+        "schema": [DiaryEntry.schema]
+      }).then((newRealm) => {
+        console.log("Realm opened");
+        setRealm(newRealm);
       });
-      console.log("Realm opened");
-      setRealm(newRealm);
     }
 
     openRealm();
