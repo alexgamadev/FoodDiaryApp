@@ -4,7 +4,7 @@
  * @format
  */
 
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -13,6 +13,7 @@ import {
 
 import { Theme } from 'interfaces/Theme.interface';
 import { useTheme } from 'contexts/Theme.context';
+import { DiaryEntry } from 'interfaces/DiaryEntry';
 
 const createStyles = (theme: Theme) => {
   return StyleSheet.create({
@@ -22,19 +23,44 @@ const createStyles = (theme: Theme) => {
   });
 }
 
-const Home = () => {
+type HomeProps = {
+  realm: Realm | null;
+}
+
+const Home = ({ realm }: HomeProps) => {
   const { theme } = useTheme();
+  const [entries, setEntries] = useState<DiaryEntry[] | null>(null);
 
   const styles = useMemo(
     () => createStyles(theme),
     [theme]
   );
 
+  // Define the collection notification listener
+  function listener(diaryEntries, changes) {
+    console.log(changes);
+    setEntries(diaryEntries.map((entry: DiaryEntry) => entry));
+  }
+
+  useEffect(() => {
+    if (realm) {
+      const diaryEntries = realm.objects<DiaryEntry>("DiaryEntry");
+      diaryEntries.addListener(listener);
+    }
+
+  }, [realm]);
+
+
   return (
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
       style={styles.mainBackground}>
-      <Text>Test</Text>
+      {entries &&
+        entries.map(entry => {
+          return <Text key={entry.id}>{entry.mealName}</Text>
+        })
+      }
+
     </ScrollView>
   );
 };
