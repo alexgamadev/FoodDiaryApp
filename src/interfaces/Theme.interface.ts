@@ -1,9 +1,11 @@
+import { StringUnitLength } from "luxon";
 
 export interface ColourTheme {
     primary: string;
     onPrimary: string;
     surface: string;
     onSurface: string;
+    onSurfaceFaded: string;
     background: string;
     footer: string;
 }

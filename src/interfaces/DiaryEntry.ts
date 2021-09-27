@@ -8,7 +8,7 @@ export class DiaryEntry {
     public id: string;
     public mealName: string;
     public description: string | null;
-    public createdAt: String;
+    public createdAt: string;
     public imageURI: string | null;
 
     constructor(mealName: string, description: string | null, createdAt: DateTime, imageURI: string | null) {

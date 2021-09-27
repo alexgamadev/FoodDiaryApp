@@ -5,6 +5,7 @@ const DEFAULT_LIGHT_COLOUR_THEME: ColourTheme = {
     onPrimary: '#fff',
     surface: '#fff',
     onSurface: '#000',
+    onSurfaceFaded: '#666',
     background: '#dedede',
     footer: '#ccc'
 }

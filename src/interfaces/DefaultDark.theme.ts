@@ -5,6 +5,7 @@ const DEFAULT_DARK_COLOUR_THEME: ColourTheme = {
     onPrimary: '#fff',
     surface: '#545454',
     onSurface: '#fff',
+    onSurfaceFaded: '#ddd',
     background: '#3f3f3f',
     footer: '#121212'
 };
