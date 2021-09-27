@@ -29,7 +29,8 @@ const App = () => {
     async function openRealm() {
       await Realm.open({
         "path": "food-diary-app",
-        "schema": [DiaryEntry.schema]
+        "schema": [DiaryEntry.schema],
+        "schemaVersion": 3,
       }).then((newRealm) => {
         console.log("Realm opened");
         setRealm(newRealm);

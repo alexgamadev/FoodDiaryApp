@@ -15,6 +15,7 @@ import { Theme } from 'interfaces/Theme.interface';
 import { useTheme } from 'contexts/Theme.context';
 import { DiaryEntry } from 'interfaces/DiaryEntry';
 import DiaryEntryCard from 'components/DiaryEntryCard';
+import { Collection, CollectionChangeSet } from 'realm';
 
 const createStyles = (theme: Theme) => {
   return StyleSheet.create({
@@ -37,9 +38,8 @@ const Home = ({ realm }: HomeProps) => {
     [theme]
   );
 
-  // Define the collection notification listener
-  function listener(diaryEntries, changes) {
-    console.log(changes);
+  // Define the collection listener
+  function listener(diaryEntries: Collection<DiaryEntry>, changes: CollectionChangeSet) {
     setEntries(diaryEntries.map((entry: DiaryEntry) => entry));
   }
 
